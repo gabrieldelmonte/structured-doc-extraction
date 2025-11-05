@@ -1,0 +1,4 @@
+# Ignoring the POC environments
+.env
+env_api/
+__pycache__/
