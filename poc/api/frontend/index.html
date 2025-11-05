@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Document Processing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>OCR Document Processing</h1>
+            <p class="subtitle">Upload your documents for intelligent OCR extraction</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-button active" data-tab="drivers-license">
+                🪪 Driver's License
+            </button>
+            <button class="tab-button" data-tab="energy-bill">
+                ⚡ Energy Bill
+            </button>
+            <button class="tab-button" data-tab="large-document">
+                📑 Large Document
+            </button>
+        </div>
+
+        <!-- Driver's License Tab -->
+        <div class="tab-content active" id="drivers-license">
+            <div class="upload-section">
+                <div class="upload-area" id="upload-area-dl">
+                    <div class="upload-icon">📸</div>
+                    <h3>Upload Driver's License</h3>
+                    <p>Drag & drop your CNH image here or click to browse</p>
+                    <input type="file" id="file-input-dl" accept="image/*" hidden>
+                    <button class="browse-btn" onclick="document.getElementById('file-input-dl').click()">
+                        Browse Files
+                    </button>
+                </div>
+                <div class="preview-section" id="preview-dl" style="display: none;">
+                    <img id="preview-img-dl" alt="Preview">
+                    <button class="remove-btn" onclick="removeFile('dl')">✕ Remove</button>
+                    <button class="submit-btn" onclick="submitDocument('dl')">
+                        🚀 Process Document
+                    </button>
+                </div>
+            </div>
+            <div class="results-section" id="results-dl" style="display: none;">
+                <h3>Extracted Information</h3>
+                <div class="results-grid" id="results-content-dl"></div>
+            </div>
+        </div>
+
+        <!-- Energy Bill Tab -->
+        <div class="tab-content" id="energy-bill">
+            <div class="upload-section">
+                <div class="upload-area" id="upload-area-eb">
+                    <div class="upload-icon">💡</div>
+                    <h3>Upload Energy Bill</h3>
+                    <p>Drag & drop your energy bill image here or click to browse</p>
+                    <input type="file" id="file-input-eb" accept="image/*,application/pdf" hidden>
+                    <button class="browse-btn" onclick="document.getElementById('file-input-eb').click()">
+                        Browse Files
+                    </button>
+                </div>
+                <div class="preview-section" id="preview-eb" style="display: none;">
+                    <img id="preview-img-eb" alt="Preview">
+                    <button class="remove-btn" onclick="removeFile('eb')">✕ Remove</button>
+                    <button class="submit-btn" onclick="submitDocument('eb')">
+                        🚀 Process Document
+                    </button>
+                </div>
+            </div>
+            <div class="results-section" id="results-eb" style="display: none;">
+                <h3>Extracted Information</h3>
+                <div class="results-grid" id="results-content-eb"></div>
+            </div>
+        </div>
+
+        <!-- Large Document Tab -->
+        <div class="tab-content" id="large-document">
+            <div class="upload-section">
+                <div class="upload-area" id="upload-area-ld">
+                    <div class="upload-icon">📚</div>
+                    <h3>Upload Large Document</h3>
+                    <p>Drag & drop multiple pages here or click to browse</p>
+                    <p class="small-text">You can select multiple files at once</p>
+                    <input type="file" id="file-input-ld" accept="image/*" multiple hidden>
+                    <button class="browse-btn" onclick="document.getElementById('file-input-ld').click()">
+                        Browse Files
+                    </button>
+                </div>
+                <div class="preview-section multi-preview" id="preview-ld" style="display: none;">
+                    <div id="preview-grid-ld" class="preview-grid"></div>
+                    <button class="remove-btn" onclick="removeFile('ld')">✕ Remove All</button>
+                    <button class="submit-btn" onclick="submitDocument('ld')">
+                        🚀 Process Document
+                    </button>
+                </div>
+            </div>
+            <div class="results-section" id="results-ld" style="display: none;">
+                <h3>Extracted Information</h3>
+                <div class="results-content" id="results-content-ld"></div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loading-overlay" style="display: none;">
+            <div class="spinner"></div>
+            <p>Processing your document...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div class="error-message" id="error-message" style="display: none;">
+            <span class="error-icon">⚠️</span>
+            <span id="error-text"></span>
+            <button class="close-error" onclick="closeError()">✕</button>
+        </div>
+    </div>
+
+    <script src="config.js?v=2"></script>
+    <script src="script.js?v=2"></script>
+</body>
+</html>
